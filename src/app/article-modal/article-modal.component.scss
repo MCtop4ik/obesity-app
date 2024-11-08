@@ -1,0 +1,33 @@
+.article-content {
+    padding: 16px;
+    /* Отступы для всего контента */
+}
+
+.author-item {
+    padding-bottom: 16px;
+    /* Отступ снизу для информации о авторе */
+    align-items: center;
+    /* Выравнивание контента по центру по вертикали */
+}
+
+.author-label h2 {
+    font-size: 1.5rem;
+    /* Размер шрифта для имени автора */
+    font-weight: bold;
+    margin: 0;
+}
+
+.content-item {
+    padding-top: 8px;
+    /* Отступ сверху для контента */
+}
+
+ion-text p {
+    font-size: 1rem;
+    /* Размер шрифта для контента */
+    line-height: 1.6;
+    /* Межстрочный интервал для лучшей читаемости */
+    color: #333;
+    /* Цвет текста */
+    margin: 0;
+}

@@ -1,17 +1,446 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="end" *ngIf="!loading">
+      <ion-button *ngIf="isDietCreated" (click)="resetDiet()" style="margin: 10px;">
+        <span class="adaptive-text">Подобрать заново</span>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
-      Tab 2
+      CareAI
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<div *ngIf="loading" class="loader-container">
+  <ion-spinner name="crescent"></ion-spinner>
+</div>
+<ion-content class="ion-padding" *ngIf="!loading">
+  <ion-title style="text-align: center;" *ngIf="isDietCreated">Диета подобрана</ion-title>
+  <form [formGroup]="personInformationForm" *ngIf="!isDietCreated">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="4">
+          <ion-textarea formControlName="mass" label="Масса тела" labelPlacement="floating" fill="outline"
+            placeholder="Введите массу тела" style="height: 55px;"></ion-textarea>
+        </ion-col>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+        <ion-col size="12" size-md="4">
+          <ion-textarea formControlName="height" label="Рост" labelPlacement="floating" fill="outline"
+            placeholder="Введите рост" style="height: 55px;"></ion-textarea>
+        </ion-col>
+
+        <ion-col>
+          <ion-button expand="block" shape="round" (click)="activateAI()" style="margin-top: 0px; height: 55px;">
+            <span style="color: azure;">Подобрать диету</span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  <div *ngIf="!isDietCreated && !isDietError"
+    style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px;">
+    <h1 style="font-size: 32px;">Еще ничего не подобрано</h1>
+    <img src="../../assets/image-Photoroom.png">
+  </div>
+  <div *ngIf="!isDietCreated && isDietError"
+    style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px;">
+    <h1 style="font-size: 32px;">Ошибка в подборе диеты.
+      Проверьте введенные параметры на наличие ошибок.</h1>
+    <img src="../../assets/diet-error.png">
+  </div>
+  <div *ngIf="isDietCreated">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6">
+          <ion-card class="card">
+            <ion-card-header class="card-header" style="padding: 5px;">
+              <ion-card-title style="font-size: 18px; line-height: 1.2;">
+                Индекс Массы Тела:
+                <span>{{ bmi }}</span>
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12" size-md="6">
+          <ion-card class="card">
+            <ion-card-header class="card-header" style="padding: 5px;">
+              <ion-card-title style="font-size: 18px; line-height: 1.2;">
+                Ваша норма:
+                <span>{{ dci }} ккал</span>
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12" size-md="6" offset-md="3">
+          <ion-card class="card">
+            <ion-card-header class="card-header" style="padding: 5px;">
+              <ion-card-title style="font-size: 18px; line-height: 1.2;">
+                Для похудения в вашем питании:
+                <span>{{ +meals['calories']['total'] }} ккал</span>
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card class="card">
+            <ion-card-header class="card-header">
+              <ion-card-title class="card-title">Завтрак</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: left;">Блюдо</th>
+                    <th style="text-align: left;">Калории</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="breakfast-salad-trigger">
+                    <td>{{ meals['breakfast']['salad']['title'] }}</td>
+                    <td class="bold">{{ +meals['breakfast']['salad']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="breakfast-salad-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['breakfast']['salad']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['breakfast']['salad']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['breakfast']['salad']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{ meals['breakfast']['salad']['fats']
+                            }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['breakfast']['salad']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['breakfast']['salad']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr id="breakfast-main_meal-trigger">
+                    <td>{{ meals['breakfast']['main_meal']['title'] }}</td>
+                    <td class="bold">{{ +meals['breakfast']['main_meal']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="breakfast-main_meal-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['breakfast']['main_meal']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['breakfast']['main_meal']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['breakfast']['main_meal']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{
+                            meals['breakfast']['main_meal']['fats'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['breakfast']['main_meal']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['breakfast']['main_meal']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr id="breakfast-second_meal-trigger">
+                    <td>{{ meals['breakfast']['second_meal']['title'] }}</td>
+                    <td class="bold">{{ +meals['breakfast']['second_meal']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="breakfast-second_meal-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['breakfast']['second_meal']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['breakfast']['second_meal']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['breakfast']['second_meal']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{
+                            meals['breakfast']['second_meal']['fats'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['breakfast']['second_meal']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['breakfast']['second_meal']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr id="breakfast-desert-trigger">
+                    <td>{{ meals['breakfast']['desert']['title'] }}</td>
+                    <td class="bold">{{ +meals['breakfast']['desert']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="breakfast-desert-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['breakfast']['desert']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['breakfast']['desert']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['breakfast']['desert']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{
+                            meals['breakfast']['desert']['fats'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['breakfast']['desert']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['breakfast']['desert']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr>
+                    <td style="font-weight: bold;">Итого:</td>
+                    <td class="bold">{{ +meals['calories']['breakfast'] }} ккал</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card class="card">
+            <ion-card-header class="card-header">
+              <ion-card-title class="card-title">Обед</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: left;">Блюдо</th>
+                    <th style="text-align: left;">Калории</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="lunch-salad-trigger">
+                    <td>{{ meals['lunch']['salad']['title'] }}</td>
+                    <td class="bold">{{ +meals['lunch']['salad']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="lunch-salad-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['lunch']['salad']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['lunch']['salad']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['lunch']['salad']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{ meals['lunch']['salad']['fats']
+                            }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['lunch']['salad']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['lunch']['salad']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr id="lunch-main_meal-trigger">
+                    <td>{{ meals['lunch']['main_meal']['title'] }}</td>
+                    <td class="bold">{{ +meals['lunch']['main_meal']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="lunch-main_meal-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['lunch']['main_meal']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['lunch']['main_meal']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['lunch']['main_meal']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{ meals['lunch']['main_meal']['fats']
+                            }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['lunch']['main_meal']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['lunch']['main_meal']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr id="lunch-second_meal-trigger">
+                    <td>{{ meals['lunch']['second_meal']['title'] }}</td>
+                    <td class="bold">{{ +meals['lunch']['second_meal']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="lunch-second_meal-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['lunch']['second_meal']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['lunch']['second_meal']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['lunch']['second_meal']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{
+                            meals['lunch']['second_meal']['fats'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['lunch']['second_meal']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['lunch']['second_meal']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr id="lunch-desert-trigger">
+                    <td>{{ meals['lunch']['desert']['title'] }}</td>
+                    <td class="bold">{{ +meals['lunch']['desert']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="lunch-desert-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['lunch']['desert']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['lunch']['desert']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['lunch']['desert']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{ meals['lunch']['desert']['fats']
+                            }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['lunch']['desert']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['lunch']['desert']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr>
+                    <td style="font-weight: bold;">Итого:</td>
+                    <td class="bold">{{ +meals['calories']['lunch'] }} ккал</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card class="card">
+            <ion-card-header class="card-header">
+              <ion-card-title class="card-title">Ужин</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: left;">Блюдо</th>
+                    <th style="text-align: left;">Калории</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="dinner-salad-trigger">
+                    <td>{{ meals['dinner']['salad']['title'] }}</td>
+                    <td class="bold">{{ +meals['dinner']['salad']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="dinner-salad-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['dinner']['salad']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['dinner']['salad']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['dinner']['salad']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{ meals['dinner']['salad']['fats']
+                            }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['dinner']['salad']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['dinner']['salad']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr id="dinner-main_meal-trigger">
+                    <td>{{ meals['dinner']['main_meal']['title'] }}</td>
+                    <td class="bold">{{ +meals['dinner']['main_meal']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="dinner-main_meal-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['dinner']['main_meal']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['dinner']['main_meal']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['dinner']['main_meal']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{
+                            meals['dinner']['main_meal']['fats'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['dinner']['main_meal']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['dinner']['main_meal']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr id="dinner-desert-trigger">
+                    <td>{{ meals['dinner']['desert']['title'] }}</td>
+                    <td class="bold">{{ +meals['dinner']['desert']['calories'] }} ккал</td>
+                  </tr>
+                  <ion-popover trigger="dinner-desert-trigger" triggerAction="click">
+                    <ng-template>
+                      <ion-card style="color: primary; border-radius: 10px; box-shadow: 0 4px 8px;">
+                        <img style="border-radius: 10px; width: 100%; height: auto;"
+                          [src]="meals['dinner']['desert']['image_src']">
+                        <ion-card-header style="padding: 16px;">
+                          <ion-card-title style="font-size: 1.5rem; font-weight: bold;">{{
+                            meals['dinner']['desert']['title'] }}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content style="padding: 16px;">
+                          <span style="display: block; margin-bottom: 8px;">Белки: {{
+                            meals['dinner']['desert']['proteins'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Жиры: {{ meals['dinner']['desert']['fats']
+                            }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Углеводы: {{
+                            meals['dinner']['desert']['carbohydrates'] }}</span>
+                          <span style="display: block; margin-bottom: 8px;">Калории: {{
+                            meals['dinner']['desert']['calories'] }}</span>
+                        </ion-card-content>
+                      </ion-card>
+                    </ng-template>
+                  </ion-popover>
+                  <tr>
+                    <td style="font-weight: bold;">Итого:</td>
+                    <td class="bold">{{ +meals['calories']['dinner'] }} ккал</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

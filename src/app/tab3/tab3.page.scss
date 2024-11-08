@@ -1,0 +1,152 @@
+// .form-container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: start;
+//     height: 100%;
+//     padding: 16px; // Adds padding to the container
+// }
+
+// ion-card {
+//     width: 100%;
+//     max-width: 600px; // Constrains width for larger screens
+//     padding: 20px; // Adds padding inside the card
+//     margin: 0 auto; // Centers the card
+//     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Adds a subtle shadow
+//     border-radius: 8px; // Rounds the corners of the card
+// }
+
+// ion-card-header {
+//     background-color: #f5f5f5; // Light background for the header
+//     border-radius: 8px 8px 0 0; // Rounds top corners
+//     text-align: center; // Centers the title text
+//     padding: 16px 0; // Adds padding to the header
+// }
+
+// ion-card-title {
+//     font-size: 1.5rem; // Increases the font size for better readability
+//     font-weight: bold; // Makes the title bold
+//     color: #333; // Dark text color
+// }
+
+// ion-item {
+//     margin-bottom: 16px; // Space between items
+// }
+
+// ion-label {
+//     color: white;
+//     // Light color for the labels
+// }
+
+// ion-button {
+//     margin-top: 20px; // Space above the button
+//     border-radius: 4px; // Rounds button corners
+//     font-weight: bold; // Makes button text bold
+// }
+
+// ion-note {
+//     font-size: 0.9rem; // Slightly smaller font size for notes
+// }
+
+// ion-select {
+//     --padding-start: 8px; // Adjusts padding for select items
+//     --padding-end: 8px; // Adjusts padding for select items
+// }
+
+// .input-item {
+//     --min-height: 56px; // Adjust this value to maintain consistent height across input items
+//     margin-bottom: 0; // Remove any bottom margin to avoid extra spacing
+// }
+
+// .form-label {
+//     margin: 10px 0;
+// }
+
+// .custom-select {
+//     --display: none;
+// }
+
+.kaggle-profile {
+    display: flex;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    /* Вертикальное выравнивание */
+}
+
+.avatar {
+    width: 100px;
+    /* Ширина аватара (увеличенная в 3 раза) */
+    height: 100px;
+    /* Высота аватара (увеличенная в 3 раза) */
+    border-radius: 50%;
+    /* Круглая форма */
+    overflow: hidden;
+    /* Скрыть лишнее содержимое */
+    margin-right: 20px;
+    /* Отступ справа */
+}
+
+.avatar img {
+    width: 100%;
+    /* Занимает всю ширину */
+    height: auto;
+    /* Поддержка соотношения сторон */
+}
+
+.profile-info {
+    flex: 1;
+    /* Занимает оставшееся пространство */
+}
+
+.profile-info h2 {
+    margin: 0;
+    /* Убрать отступы */
+    font-size: 1.6em;
+    /* Размер заголовка */
+}
+
+.join-date,
+.job-title {
+    margin: 2px 0;
+    /* Отступы между строками */
+    color: #555;
+    /* Цвет текста */
+    font-size: 1em;
+    /* Размер шрифта */
+}
+
+@media (max-width: 600px) {
+    .kaggle-profile {
+        flex-direction: column;
+        /* Изменить направление на вертикальное */
+        align-items: center;
+        /* Выравнивание по левому краю */
+    }
+
+    .profile-container {
+        flex-direction: column;
+        /* Вертикальное выравнивание для мобильных */
+        align-items: center;
+        /* Центрирование элементов */
+        text-align: center;
+        /* Центрирование текста */
+    }
+
+    .avatar {
+        margin-bottom: 10px;
+        /* Отступ снизу для разделения элементов */
+    }
+
+    .profile-info h2 {
+        font-size: 1.4em;
+        /* Уменьшить размер шрифта для мобильных */
+    }
+
+    .join-date,
+    .job-title {
+        font-size: 0.9em;
+        /* Уменьшить размер шрифта для мобильных */
+    }
+}

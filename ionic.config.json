@@ -1,5 +1,7 @@
 {
-  "name": "obesity_proj",
-  "integrations": {},
+  "name": "CareAI",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

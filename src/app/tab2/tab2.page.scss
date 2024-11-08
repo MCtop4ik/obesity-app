@@ -1,0 +1,167 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 16px; // Adds padding to the container
+}
+
+ion-card {
+  width: 100%;
+  max-width: 600px; // Constrains width for larger screens
+  padding: 20px; // Adds padding inside the card
+  margin: 0 auto; // Centers the card
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Adds a subtle shadow
+  border-radius: 8px; // Rounds the corners of the card
+}
+
+// ion-card-header {
+//   background-color: gray; // Light background for the header
+//   border-radius: 8px 8px 0 0; // Rounds top corners
+//   text-align: center; // Centers the title text
+//   padding: 16px 0; // Adds padding to the header
+// }
+
+ion-card-title {
+  font-size: 1.5rem; // Increases the font size for better readability
+  font-weight: bold; // Makes the title bold
+  color: #333; // Dark text color
+}
+
+ion-item {
+  margin-bottom: 16px; // Space between items
+}
+
+ion-label {
+  color: white; // Light color for the labels
+}
+
+ion-button {
+  margin-top: 20px; // Space above the button
+  border-radius: 4px; // Rounds button corners
+  font-weight: bold; // Makes button text bold
+}
+
+ion-note {
+  font-size: 0.9rem; // Slightly smaller font size for notes
+}
+
+ion-select {
+  --padding-start: 8px; // Adjusts padding for select items
+  --padding-end: 8px; // Adjusts padding for select items
+}
+
+.input-item {
+  --min-height: 56px; // Adjust this value to maintain consistent height across input items
+  margin-bottom: 0; // Remove any bottom margin to avoid extra spacing
+}
+
+.card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  padding-bottom: 0;
+}
+
+.card-title {
+  margin: 0px 0px 10px;
+}
+
+.card-content {
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: #555;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 10px 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table td {
+  padding: 10px 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.table td.bold {
+  font-weight: bold;
+}
+
+// component.scss
+
+ion-card {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-dark);
+
+  img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+  }
+
+  ion-card-header {
+    padding: 16px;
+  }
+
+  ion-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  ion-card-content {
+    padding: 16px;
+
+    span {
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
+
+  // Стили для темной темы
+  @media (prefers-color-scheme: dark) {
+    --background: var(--ion-color-dark);
+    --color: var(--ion-color-light);
+
+    ion-card-title {
+      color: var(--ion-color-light);
+    }
+
+    ion-card-content span {
+      color: var(--ion-color-light);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  ion-title {
+    font-size: 36px;
+  }
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.adaptive-text {
+  color: var(--ion-text-color, black); /* Чёрный цвет по умолчанию */
+}
+
+:root {
+  --ion-text-color: azure; /* Для светлой темы */
+}
+
+.ion-dark {
+  --ion-text-color: black; /* Для темной темы */
+}

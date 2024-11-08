@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>News</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let article of articles" (click)="openArticleModal(article)">
+      <ion-item lines="none">
+        <ion-avatar slot="start" style="width: 70px; height: 70px;">
+          <img [src]="article.authorAvatar" />
+        </ion-avatar>
+        <ion-label>
+          <h2 style="font-size: 1.4em;">{{ article.title }}</h2>
+          <p style="font-size: 1.1em; color: #333;">{{ article.authorName }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-card-content>
+        <p style="font-size: 1.2em; color: #4a4a4a;">{{ article.description }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

@@ -1,17 +1,92 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Профиль
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+<!-- <ion-content [fullscreen]="true">
+  <div class="form-container">
+    <form [formGroup]="personInformationForm" (ngSubmit)="onSubmit()">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="4">
+            <ion-textarea formControlName="firstName" label="Имя" labelPlacement="floating" fill="outline"
+              placeholder="Введите имя"></ion-textarea>
+            <ion-note color="danger"
+              *ngIf="personInformationForm.controls['firstName'].hasError('required') && personInformationForm.controls['firstName'].touched">
+              Обязательное поле
+            </ion-note>
+          </ion-col>
+          <ion-col size="12" size-md="4">
+            <ion-textarea formControlName="secondName" label="Фамилия" labelPlacement="floating" fill="outline"
+              placeholder="Введите фамилию"></ion-textarea>
+            <ion-note color="danger"
+              *ngIf="personInformationForm.controls['secondName'].hasError('required') && personInformationForm.controls['secondName'].touched">
+              Обязательное поле
+            </ion-note>
+          </ion-col>
+          <ion-col size="12" size-md="4">
+            <ion-textarea formControlName="fatherName" label="Отчество" labelPlacement="floating" fill="outline"
+              placeholder="Введите отчество"></ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-input type="date" formControlName="dateOfBirth" (ngModelChange)="onBirthDayButtonClick()"
+              fill="outline"></ion-input>
+            <ion-note color="danger"
+              *ngIf="personInformationForm.controls['dateOfBirth'].hasError('required') && personInformationForm.controls['dateOfBirth'].touched">
+              Обязательное поле
+            </ion-note>
+          </ion-col> -->
+<!-- <ion-col size="12" size-md="6" *ngIf="age !== null">
+            <ion-label position="floating" class="form-label">
+              Возраст
+            </ion-label>
+            <ion-input type="number" [value]="age" disabled></ion-input>
+          </ion-col> -->
+<!-- <ion-col size="12" size-md="6">
+            <ion-select formControlName="sex" fill="outline" class="custom-select">
+              <ion-select-option value="male">Male</ion-select-option>
+              <ion-select-option value="female">Female</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button type="submit" expand="block" color="primary" [disabled]="!personInformationForm.valid">
+              Сохранить
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content> -->
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card class="kaggle-profile">
+          <ion-card-header>
+            <ion-card-title>
+              <div class="profile-container">
+                <div class="avatar">
+                  <img src="./../../assets/apple.png" alt="Avatar" />
+                </div>
+                <div class="profile-info">
+                  <h2>Захаров Арсений</h2>
+                  <p class="join-date">Присоединился: Октябрь 2024</p>
+                  <!-- <p class="job-title"></p> -->
+                </div>
+              </div>
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-chart></app-chart>
 </ion-content>
