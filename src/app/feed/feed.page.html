@@ -19,7 +19,7 @@
                 <img [src]="post.userAvatar" alt="User Avatar" />
               </ion-avatar>
               <ion-label>
-                <h2>{{ post.userName }}</h2>
+                <h2>CareAI | Anonimous doctor</h2>
                 <p>{{ post.postDate }}</p>
               </ion-label>
               <ion-button fill="clear" slot="end" (click)="moreOptions(post)">
@@ -53,7 +53,7 @@
 
             <!-- Post Likes and Caption -->
             <p><strong>{{ post.likes }} likes</strong></p>
-            <p><strong>{{ post.userName }}</strong> {{ post.caption }}</p>
+            <p><strong>CareAI | Anonimous doctor</strong> {{ post.caption }}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>

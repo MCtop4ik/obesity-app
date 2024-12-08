@@ -59,6 +59,10 @@ const routes: Routes = [
   {
     path: 'calendar-modal',
     loadChildren: () => import('./calendar-modal/calendar-modal.module').then( m => m.CalendarModalPageModule)
+  },
+  {
+    path: 'day-diet',
+    loadChildren: () => import('./day-diet/day-diet.module').then( m => m.DayDietPageModule)
   }
 ];
 @NgModule({

@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class ChatPage implements OnInit {
 
   messages = [
-    { text: 'Hello! How are you?', type: 'received' },
-    { text: "I'm doing great, thanks! What about you?", type: 'sent' },
-    { text: "I'm good too. Let's catch up later?", type: 'received' },
+    { text: 'Привет! Как ты?', type: 'received' },
+    { text: "Все хорошо! Подборки диет просто супер🤩", type: 'sent' },
+    { text: "Продолжай в том же духе. Когда придешь на прием?", type: 'received' },
   ];
   messageText = '';
 

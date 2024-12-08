@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar> 
+    <ion-title>Диета на день</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Диета на день</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Карточки для диеты -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Завтрак</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ meals[0].description }}</p>
+      <p>{{ meals[0].kbju }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Обед</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ meals[1].description }}</p>
+      <p>{{ meals[1].kbju }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Ужин</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ meals[2].description }}</p>
+      <p>{{ meals[2].kbju }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Карточки для фотографий -->
+  <ion-card *ngFor="let meal of meals">
+    <ion-card-header>
+      <ion-card-title>{{ meal.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="takePhoto(meal)">Сфоткать еду</ion-button>
+      <img *ngIf="meal.photo" [src]="meal.photo" alt="Фото еды" />
+      <p *ngIf="meal.kbju">{{ meal.kbju }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Кнопка для пересчета диеты -->
+  <ion-button expand="full" (click)="recalculateDiet()">Пересчитать диету</ion-button>
+</ion-content>

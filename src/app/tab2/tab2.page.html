@@ -57,9 +57,14 @@
             placeholder="Введите предпочтения" class="custom-textarea"></ion-textarea>
         </ion-col>
 
-        <ion-col>
+        <ion-col size="12" size-md="10">
           <ion-button expand="block" shape="round" (click)="activateAI()" style="margin-top: 0px; height: 55px;">
             <span style="color: azure;">Подобрать диету</span>
+          </ion-button>
+        </ion-col>
+        <ion-col size="12" size-md="2">
+          <ion-button expand="block" shape="round" (click)="takePicture()" style="margin-top: 0px; height: 55px;">
+            <span style="color: azure;">Сфоткать анализы</span>
           </ion-button>
         </ion-col>
       </ion-row>

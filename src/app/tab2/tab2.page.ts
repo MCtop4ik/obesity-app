@@ -5,6 +5,7 @@ import { FitDietService } from '../services/fit-diet.service';
 import { AuthService } from '../services/auth.service';
 import { ModalController } from '@ionic/angular';
 import { DietModalComponent } from '../diet-modal/diet-modal.component';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-tab2',
@@ -18,6 +19,7 @@ export class Tab2Page implements OnInit {
   bmi: number | undefined;
   loading: boolean = false;
 
+  camera_photo: any;
   meals: any;
 
   isDietCreated: boolean = false;
@@ -161,5 +163,20 @@ export class Tab2Page implements OnInit {
       },
     });
     return await modal.present();
+  }
+
+  async takePicture() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.Base64,
+        source: CameraSource.Camera,
+      });
+
+      this.camera_photo = `data:image/jpeg;base64,${image.base64String}`;
+    } catch (error) {
+      console.error('Camera error:', error);
+    }
   }
 }

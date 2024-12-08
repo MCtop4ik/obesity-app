@@ -8,5 +8,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-calendar [(ngModel)]="selectedDate" (change)="onDateChange($event)"></ion-calendar>
+  <ion-datetime [(ngModel)]="selectedDate" (ionChange)="onDateChange($event)" [highlightedDates]="highlightedDates" [showDefaultButtons]="true">
+    <span>Суммарное кол-во калорий: 2908ккал</span>
+  </ion-datetime>
+
+  <div *ngIf="selectedDate">
+    <ion-card *ngFor="let card of cards">
+      <ion-card-header>
+        <ion-card-title>{{ card.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ card.content }}
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
