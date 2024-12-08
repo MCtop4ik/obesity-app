@@ -191,3 +191,35 @@ ion-card {
   height: 55px;
   border: 1px black;
 }
+
+ion-button {
+  --background: #CDB1EF; /* Основной цвет фона */
+  --background-hover: #9356DF; /* Цвет фона при наведении */
+  --background-activated: #9356DF; /* Цвет фона при активации */
+  --background-focused: #9356DF; /* Цвет фона при фокусе */
+
+  --color: #000000; /* Цвет текста */
+  --color-hover: #000000; /* Цвет текста при наведении */
+  --color-activated: #000000; /* Цвет текста при активации */
+  --color-focused: #000000; /* Цвет текста при фокусе */
+
+  --border-radius: 8px; /* Скругление углов */
+  --padding-top: 10px; /* Отступ сверху */
+  --padding-bottom: 10px; /* Отступ снизу */
+}
+
+ion-fab-button {
+  --background: #CDB1EF; /* Основной цвет фона */
+  --background-hover: #9356DF; /* Цвет фона при наведении */
+  --background-activated: #9356DF; /* Цвет фона при активации */
+  --background-focused: #9356DF; /* Цвет фона при фокусе */
+
+  --color: #000000; /* Цвет текста */
+  --color-hover: #000000; /* Цвет текста при наведении */
+  --color-activated: #000000; /* Цвет текста при активации */
+  --color-focused: #000000; /* Цвет текста при фокусе */
+
+  --border-radius: 8px; /* Скругление углов */
+  --padding-top: 10px; /* Отступ сверху */
+  --padding-bottom: 10px; /* Отступ снизу */
+}

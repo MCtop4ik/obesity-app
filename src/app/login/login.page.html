@@ -12,7 +12,7 @@
           Register
         </ion-segment-button>
         <ion-segment-button value="checkout">
-          Test app
+          Тест
         </ion-segment-button>
       </ion-segment>
       <form [formGroup]="formGroup" *ngIf="selectedTab === 'login'">
@@ -23,17 +23,16 @@
         <ion-grid>
           <ion-row class="ion-align-items-center">
             <ion-col>
-              <ion-input type="text" formControlName="email" placeholder="Email" required="true" position="floating"
+              <ion-input type="text" formControlName="email" placeholder="Почта" required="true" position="floating"
                 background="white" clearInput></ion-input>
               <hr>
-              <ion-input type="password" formControlName="password" placeholder="Password" required="true"
+              <ion-input type="password" formControlName="password" placeholder="Пароль" required="true"
                 position="floating" background="white" clearInput></ion-input>
             </ion-col>
           </ion-row>
           <ion-row class="ion-align-items-center">
             <ion-col size-lg="6" offset-lg="3">
-              <ion-button color="dark" [disabled]="formGroup.invalid" (click)="login()" expand="block">Sign
-                In</ion-button>
+              <ion-button color="dark" [disabled]="formGroup.invalid" (click)="login()" expand="block">Войти</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -44,20 +43,20 @@
         <ion-grid>
           <ion-row class="ion-align-items-center">
             <ion-col>
-              <ion-input type="email" formControlName="email" placeholder="Email" required="true" position="floating"
+              <ion-input type="email" formControlName="email" placeholder="Почта" required="true" position="floating"
                 background="white" clearInput></ion-input>
               <hr>
-              <ion-input type="text" formControlName="firstName" placeholder="Name" required="true" position="floating"
+              <ion-input type="text" formControlName="firstName" placeholder="Имя" required="true" position="floating"
                 background="white" clearInput></ion-input>
               <hr>
-              <ion-input type="date" formControlName="dateOfBirth" placeholder="Your birthday" required
+              <ion-input type="date" formControlName="dateOfBirth" placeholder="Дата дня рождения" required
                 position="floating" background="white">
               </ion-input>
               <hr>
-              <ion-input type="password" formControlName="password" placeholder="Password" required="true"
+              <ion-input type="password" formControlName="password" placeholder="Пароль" required="true"
                 position="floating" background="white" clearInput></ion-input>
               <hr>
-              <ion-input type="password" formControlName="confirmPassword" placeholder="Confirm Password"
+              <ion-input type="password" formControlName="confirmPassword" placeholder="Подтвердить пароль"
                 required="true" position="floating" background="white" clearInput></ion-input>
               <hr>
             </ion-col>
@@ -65,7 +64,7 @@
           <ion-row class="ion-align-items-center">
             <ion-col size-lg="6" offset-lg="3">
               <ion-button color="dark" [disabled]="registrationFormGroup.invalid" (click)="register()"
-                expand="block">Register</ion-button>
+                expand="block">Зарегистрироваться</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -74,16 +73,16 @@
         <ion-grid>
           <ion-row class="ion-align-items-center">
             <ion-col>
-              <ion-button (click)="takePicture()">Сделай фотку лица</ion-button>
+              <ion-button color="dark" (click)="takePicture()" expand="block">Сделай фотку лица</ion-button>
               <img [src]="image">
               <hr>
-              <ion-input type="text" formControlName="weight" placeholder="Weight" required="true" position="floating"
+              <ion-input type="text" formControlName="weight" placeholder="Вес" required="true" position="floating"
                 background="white" clearInput></ion-input>
               <hr>
-              <ion-input type="text" formControlName="height" placeholder="Height" required="true" position="floating"
+              <ion-input type="text" formControlName="height" placeholder="Рост" required="true" position="floating"
                 background="white" clearInput></ion-input>
               <hr>
-              <ion-button (click)="countDiet()">Посчитать диету</ion-button>
+              <ion-button (click)="countDiet()" color="dark" expand="block">Посчитать диету</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>

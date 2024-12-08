@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   private doctor(): void {
     interval(5000)
     .pipe(
-      switchMap(() => this.http.get(`http://localhost:3000/all_diets`))
+      switchMap(() => this.http.get(`https://careai-hylta.ru/all_diets`))
     )
     .subscribe((data) => {
       this.storageService.set('all_diets', data).then();

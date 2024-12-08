@@ -7,7 +7,7 @@ import { map, Observable, retry, throwError, catchError, of } from 'rxjs';
     providedIn: 'root'
 })
 export class HttpService {
-    private baseUrl = 'http://localhost:3000/';
+    private baseUrl = 'https://careai-hylta.ru/';
     private retryCount = 3;
 
     constructor(private http: HttpClient) {}

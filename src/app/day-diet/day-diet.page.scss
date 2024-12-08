@@ -14,3 +14,30 @@ img {
 ion-button.recalculate-button {
     margin-top: 20px;
 }
+
+ion-button {
+    --background: #CDB1EF;
+    /* Основной цвет фона */
+    --background-hover: #9356DF;
+    /* Цвет фона при наведении */
+    --background-activated: #9356DF;
+    /* Цвет фона при активации */
+    --background-focused: #9356DF;
+    /* Цвет фона при фокусе */
+  
+    --color: #fff;
+    /* Цвет текста */
+    --color-hover: #fff;
+    /* Цвет текста при наведении */
+    --color-activated: #fff;
+    /* Цвет текста при активации */
+    --color-focused: #fff;
+    /* Цвет текста при фокусе */
+  
+    --border-radius: 8px;
+    /* Скругление углов */
+    --padding-top: 10px;
+    /* Отступ сверху */
+    --padding-bottom: 10px;
+    /* Отступ снизу */
+  }

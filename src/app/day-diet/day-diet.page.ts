@@ -30,14 +30,23 @@ export class DayDietPage {
     // Проверяем, есть ли фотография для завтрака
     const breakfast = this.meals.find(meal => meal.title === 'Завтрак');
     if (breakfast && breakfast.photo) {
-      // Меняем диету для обеда и ужина
+      // Добавляем калории и другие параметры от съеденного "чокопая"
+      const chokopayCalories = 440; // Пример калорий от "чокопая"
+      const chokopayProteins = 3.9; // Пример белков от "чокопая"
+      const chokopayCarbs = 63.9; // Пример углеводов от "чокопая"
+      const chokopayFats = 18.7; // Пример жиров от "чокопая"
+
+      // Пересчитываем диету для обеда и ужина
       this.meals.forEach(meal => {
         if (meal.title === 'Обед') {
-          meal.kbju = 'КБЖУ: 500 ккал, 35 г белков, 45 г углеводов, 20 г жиров';
+          meal.kbju = `КБЖУ: ${450 + chokopayCalories} ккал, ${30 + chokopayProteins} г белков, ${40 + chokopayCarbs} г углеводов, ${15 + chokopayFats} г жиров`;
           meal.description = 'Паста с томатным соусом, салат из огурцов и помидоров';
         } else if (meal.title === 'Ужин') {
-          meal.kbju = 'КБЖУ: 450 ккал, 30 г белков, 40 г углеводов, 15 г жиров';
+          meal.kbju = `КБЖУ: ${400 + chokopayCalories} ккал, ${25 + chokopayProteins} г белков, ${35 + chokopayCarbs} г углеводов, ${10 + chokopayFats} г жиров`;
           meal.description = 'Творог с фруктами, кефир';
+        } else if (meal.title === 'Завтрак') {
+          meal.kbju = `КБЖУ: ${chokopayCalories} ккал, ${chokopayProteins + 2} г белков, ${chokopayCarbs - 14} г углеводов, ${chokopayFats + 4} г жиров`;
+          meal.description = 'Печенье';
         }
       });
     } else {

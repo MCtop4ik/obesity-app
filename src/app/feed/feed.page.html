@@ -19,10 +19,10 @@
                 <img [src]="post.userAvatar" alt="User Avatar" />
               </ion-avatar>
               <ion-label>
-                <h2>CareAI | Anonimous doctor</h2>
-                <p>{{ post.postDate }}</p>
+                <h2>{{ post.userName }}</h2>
+                <p *ngIf="post.userName != 'Реклама'">{{ post.postDate }}</p>
               </ion-label>
-              <ion-button fill="clear" slot="end" (click)="moreOptions(post)">
+              <ion-button *ngIf="post.userName != 'Реклама'" fill="clear" slot="end" (click)="moreOptions(post)">
                 <ion-icon name="ellipsis-horizontal"></ion-icon>
               </ion-button>
             </ion-item>
@@ -33,7 +33,7 @@
 
           <!-- Post Actions -->
           <ion-card-content>
-            <ion-row class="actions">
+            <ion-row class="actions" *ngIf="post.userName != 'Реклама'">
               <ion-col size="auto">
                 <ion-button fill="clear" (click)="likePost(post)">
                   <ion-icon [name]="post.liked ? 'heart' : 'heart-outline'" color="danger"></ion-icon>
@@ -52,8 +52,8 @@
             </ion-row>
 
             <!-- Post Likes and Caption -->
-            <p><strong>{{ post.likes }} likes</strong></p>
-            <p><strong>CareAI | Anonimous doctor</strong> {{ post.caption }}</p>
+            <p *ngIf="post.userName != 'Реклама'"><strong>{{ post.likes }} likes</strong></p>
+            <p><strong>{{ post.userName }}</strong> {{ post.caption }}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>

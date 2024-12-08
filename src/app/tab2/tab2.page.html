@@ -23,12 +23,12 @@
         <ion-title style="text-align: center;" *ngIf="isDietCreated">Диета подобрана</ion-title>
       </ion-col>
       <ion-col size="12" size-md="6" size-lg="4" class="diet-buttons-big-screens">
-        <ion-button expand="block" shape="round" (click)="saveDiet()" style="margin-top: 0px; height: 55px;">
+        <ion-button expand="block" shape="round" (click)="saveDiet()" style="margin-top: 0px; height: 55px;" class="corporate-color">
           <span style="color: azure;">Сохранить диету</span>
         </ion-button>
       </ion-col>
       <ion-col size="12" size-md="6" size-lg="4" class="diet-buttons-big-screens">
-        <ion-button expand="block" shape="round" (click)="activateAI()" style="margin-top: 0px; height: 55px;">
+        <ion-button expand="block" shape="round" (click)="activateAI()" style="margin-top: 0px; height: 55px;" class="corporate-color">
           <span style="color: azure;">Обновить диету</span>
         </ion-button>
       </ion-col>
@@ -58,12 +58,12 @@
         </ion-col>
 
         <ion-col size="12" size-md="10">
-          <ion-button expand="block" shape="round" (click)="activateAI()" style="margin-top: 0px; height: 55px;">
+          <ion-button expand="block" shape="round" (click)="activateAI()" style="margin-top: 0px; height: 55px;" class="corporate-color">
             <span style="color: azure;">Подобрать диету</span>
           </ion-button>
         </ion-col>
         <ion-col size="12" size-md="2">
-          <ion-button expand="block" shape="round" (click)="takePicture()" style="margin-top: 0px; height: 55px;">
+          <ion-button expand="block" shape="round" (click)="takePicture()" style="margin-top: 0px; height: 55px;" class="corporate-color">
             <span style="color: azure;">Сфоткать анализы</span>
           </ion-button>
         </ion-col>
@@ -152,7 +152,7 @@
                             meals['breakfast']['salad']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['breakfast']['salad']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['breakfast']['salad'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button (click)="onDietSelected(meals['breakfast']['salad'])" class="corporate-color"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -179,7 +179,7 @@
                             meals['breakfast']['main_meal']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['breakfast']['main_meal']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['breakfast']['main_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button class="corporate-color" (click)="onDietSelected(meals['breakfast']['main_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
 
                         </ion-card-content>
                       </ion-card>
@@ -207,7 +207,7 @@
                             meals['breakfast']['second_meal']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['breakfast']['second_meal']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['breakfast']['second_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button class="corporate-color" (click)="onDietSelected(meals['breakfast']['second_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -234,7 +234,7 @@
                             meals['breakfast']['desert']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['breakfast']['desert']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['breakfast']['desert'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button class="corporate-color" (click)="onDietSelected(meals['breakfast']['desert'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -285,7 +285,7 @@
                             meals['lunch']['salad']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['lunch']['salad']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['lunch']['salad'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button class="corporate-color" (click)="onDietSelected(meals['lunch']['salad'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -312,7 +312,7 @@
                             meals['lunch']['main_meal']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['lunch']['main_meal']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['lunch']['main_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button class="corporate-color" (click)="onDietSelected(meals['lunch']['main_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -339,7 +339,7 @@
                             meals['lunch']['second_meal']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['lunch']['second_meal']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['lunch']['second_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button class="corporate-color" (click)="onDietSelected(meals['lunch']['second_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -366,7 +366,7 @@
                             meals['lunch']['desert']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['lunch']['desert']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['lunch']['desert'])" ><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button class="corporate-color" (click)="onDietSelected(meals['lunch']['desert'])" ><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -417,7 +417,7 @@
                             meals['dinner']['salad']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['dinner']['salad']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['dinner']['salad'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button class="corporate-color" (click)="onDietSelected(meals['dinner']['salad'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -444,7 +444,7 @@
                             meals['dinner']['main_meal']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['dinner']['main_meal']['calories'] }}</span>
-                          <ion-button (click)="onDietSelected(meals['dinner']['main_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                          <ion-button class="corporate-color" (click)="onDietSelected(meals['dinner']['main_meal'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -471,7 +471,7 @@
                             meals['dinner']['desert']['carbohydrates'] }}</span>
                           <span style="display: block; margin-bottom: 8px;">Калории: {{
                             meals['dinner']['desert']['calories'] }}</span>
-                           <ion-button (click)="onDietSelected(meals['dinner']['desert'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
+                           <ion-button class="corporate-color" (click)="onDietSelected(meals['dinner']['desert'])"><ion-icon name="receipt-outline"></ion-icon>Посмотреть рецепт</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ng-template>
@@ -490,10 +490,10 @@
   </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="diet-buttons" *ngIf="!loading && isDietCreated">
-    <ion-fab-button color="primary" style="margin: 10px" (click)="saveDiet()">
+    <ion-fab-button class="corporate-color2"style="margin: 10px" (click)="saveDiet()">
       <ion-icon name="save"></ion-icon>
     </ion-fab-button>
-    <ion-fab-button color="secondary" style="margin: 10px" (click)="activateAI()">
+    <ion-fab-button class="corporate-color" style="margin: 10px" (click)="activateAI()">
       <ion-icon name="refresh"></ion-icon>
     </ion-fab-button>
   </ion-fab>
