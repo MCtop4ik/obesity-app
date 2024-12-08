@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Лента
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <!-- Instagram-like Feed -->
+    <ion-row *ngFor="let post of posts">
+      <ion-col size="12">
+        <!-- Post Header -->
+        <ion-card>
+          <ion-card-header>
+            <ion-item lines="none">
+              <ion-avatar slot="start">
+                <img [src]="post.userAvatar" alt="User Avatar" />
+              </ion-avatar>
+              <ion-label>
+                <h2>{{ post.userName }}</h2>
+                <p>{{ post.postDate }}</p>
+              </ion-label>
+              <ion-button fill="clear" slot="end" (click)="moreOptions(post)">
+                <ion-icon name="ellipsis-horizontal"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-header>
+
+          <!-- Post Image -->
+          <ion-img [src]="post.image" alt="Post Image" class="post-image"></ion-img>
+
+          <!-- Post Actions -->
+          <ion-card-content>
+            <ion-row class="actions">
+              <ion-col size="auto">
+                <ion-button fill="clear" (click)="likePost(post)">
+                  <ion-icon [name]="post.liked ? 'heart' : 'heart-outline'" color="danger"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-button fill="clear">
+                  <ion-icon name="chatbubble-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-button fill="clear">
+                  <ion-icon name="share-social-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <!-- Post Likes and Caption -->
+            <p><strong>{{ post.likes }} likes</strong></p>
+            <p><strong>{{ post.userName }}</strong> {{ post.caption }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import * as Papa from 'papaparse';
 
 @Injectable({
@@ -13,21 +13,32 @@ export class CsvService {
     this.loadDietsCSV();
   }
 
-  loadMealsCSV() {
+  async loadMealsCSV() {
     const csvFilePath = './../../assets/csv/nutrition.csv';
 
-    Papa.parse(csvFilePath, {
-      download: true,
-      header: true,
-      complete: (results) => {
+    try {
+        const results: any = await this.parseCSV(csvFilePath);
         console.log('Parsed Results:', results);
         this.meals = results.data;
-      },
-      error: (error) => {
+    } catch (error) {
         console.error('Error while parsing CSV:', error);
-      }
+    }
+}
+
+parseCSV(filePath: any) {
+    return new Promise((resolve, reject) => {
+        Papa.parse(filePath, {
+            download: true,
+            header: true,
+            complete: (results) => {
+                resolve(results);
+            },
+            error: (error) => {
+                reject(error);
+            }
+        });
     });
-  }
+}
 
   loadDietsCSV() {
     const csvFilePath = './../../assets/csv/combined_meals.csv';

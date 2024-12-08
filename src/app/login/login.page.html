@@ -1,0 +1,93 @@
+<ion-content>
+  <div class="center-content">
+    <div class="auth-form">
+      <div class="logo-section">
+        <img class="small vertical-center test" src="../../assets/CARE-AI-new-logo.png">
+      </div>
+      <ion-segment [(ngModel)]="selectedTab" color="primary">
+        <ion-segment-button value="login">
+          Login
+        </ion-segment-button>
+        <ion-segment-button value="register">
+          Register
+        </ion-segment-button>
+        <ion-segment-button value="checkout">
+          Test app
+        </ion-segment-button>
+      </ion-segment>
+      <form [formGroup]="formGroup" *ngIf="selectedTab === 'login'">
+        <div class="error" *ngIf="isFailed">
+          <span *ngIf="titleError == 'Error'"> Неправильная почта или пароль </span>
+          <span *ngIf="titleError != 'Error'"> {{titleError}} </span>
+        </div>
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col>
+              <ion-input type="text" formControlName="email" placeholder="Email" required="true" position="floating"
+                background="white" clearInput></ion-input>
+              <hr>
+              <ion-input type="password" formControlName="password" placeholder="Password" required="true"
+                position="floating" background="white" clearInput></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-align-items-center">
+            <ion-col size-lg="6" offset-lg="3">
+              <ion-button color="dark" [disabled]="formGroup.invalid" (click)="login()" expand="block">Sign
+                In</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+
+      <!-- Registration Form -->
+      <form [formGroup]="registrationFormGroup" *ngIf="selectedTab === 'register'">
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col>
+              <ion-input type="email" formControlName="email" placeholder="Email" required="true" position="floating"
+                background="white" clearInput></ion-input>
+              <hr>
+              <ion-input type="text" formControlName="firstName" placeholder="Name" required="true" position="floating"
+                background="white" clearInput></ion-input>
+              <hr>
+              <ion-input type="date" formControlName="dateOfBirth" placeholder="Your birthday" required
+                position="floating" background="white">
+              </ion-input>
+              <hr>
+              <ion-input type="password" formControlName="password" placeholder="Password" required="true"
+                position="floating" background="white" clearInput></ion-input>
+              <hr>
+              <ion-input type="password" formControlName="confirmPassword" placeholder="Confirm Password"
+                required="true" position="floating" background="white" clearInput></ion-input>
+              <hr>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-align-items-center">
+            <ion-col size-lg="6" offset-lg="3">
+              <ion-button color="dark" [disabled]="registrationFormGroup.invalid" (click)="register()"
+                expand="block">Register</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+      <form [formGroup]="testFormGroup" *ngIf="selectedTab === 'checkout'">
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col>
+              <ion-button (click)="takePicture()">Сделай фотку лица</ion-button>
+              <img [src]="image">
+              <hr>
+              <ion-input type="text" formControlName="weight" placeholder="Weight" required="true" position="floating"
+                background="white" clearInput></ion-input>
+              <hr>
+              <ion-input type="text" formControlName="height" placeholder="Height" required="true" position="floating"
+                background="white" clearInput></ion-input>
+              <hr>
+              <ion-button (click)="countDiet()">Посчитать диету</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </div>
+  </div>
+</ion-content>

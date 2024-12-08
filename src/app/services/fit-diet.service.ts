@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CsvService } from './csv.service';
+import { StorageService } from './storage.service';
+import { HttpService } from './http.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +11,33 @@ export class FitDietService {
   calories: number = 0;
   meals: any;
 
-  constructor(private csvService: CsvService) {}
+  constructor(
+    private csvService: CsvService, 
+    private storageService: StorageService,
+    private httpService: HttpService,
+    private authService: AuthService
+  ) { }
 
   findDiet() {
     let allCombinations = this.csvService.getDiets();
-    let targetCalories = this.calories;
-    let tolerance = 10;
-    let descendCalories = 100;
+    console.log(allCombinations)
+    let targetCalories = this.getRandomCalories(this.calories);
+    console.log(targetCalories)
+    let tolerance = 100;
+    let descendCalories = 10;
     const filteredCombinations = allCombinations.filter(combo => {
       return +combo['Total Calories'] >= targetCalories - descendCalories - tolerance && +combo['Total Calories'] <= targetCalories - descendCalories + tolerance;
     }
     );
-
+    console.log(filteredCombinations)
     return this.dailyMeal(filteredCombinations[0]);
+  }
+
+  getRandomCalories(baseCalories: number): number {
+    const percentage = 0.05;
+    const min = baseCalories * (1 - percentage);
+    const max = baseCalories * (1 + percentage);
+    return Math.random() * (max - min) + min;
   }
 
   dailyMeal(diet: any) {
@@ -76,4 +93,27 @@ export class FitDietService {
     this.calories = calories;
   }
 
+  saveDiet(diet: any) {
+    const timestamp = new Date(Date.now()).toISOString();
+
+    this.storageService.get('diets').then((json: any) => {
+      this.authService.loadProfile().then((profile) => {
+        let diets: any = JSON.parse(json.value);
+        if (diets == null) {
+          diets = []
+        }
+        diets.push({
+          diet: diet,
+          timestamp: timestamp,
+          status: 'approving-stage'
+        })
+        this.httpService.applyDiet({
+          userid: profile.userid,
+          diet: diet,
+          status: 'approving-stage'
+        }).subscribe();
+        this.storageService.set('diets', diets)
+      });
+    });
+  }
 }

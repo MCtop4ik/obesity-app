@@ -1,0 +1,108 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Тестовая подборка диет</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="loader" class="loader-container">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <div *ngIf="!loader">
+    <ion-card><ion-card-title>Требуется 2908 ккал чтобы похудеть.</ion-card-title></ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Завтрак</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-label>Основное блюдо: {{ breakfast.main_meal.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Салат: {{ breakfast.salad.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Десерт: {{ breakfast.desert.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Калории: {{ breakfast.calories.breakfast }}</ion-label>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Обед</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-label>Основное блюдо: {{ lunch.main_meal.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Салат: {{ lunch.salad.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Второе блюдо: {{ lunch.second_meal.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Десерт: {{ lunch.desert.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Калории: {{ lunch.calories.lunch }}</ion-label>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Ужин</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-label>Основное блюдо: {{ dinner.main_meal.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Салат: {{ dinner.salad.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Десерт: {{ dinner.desert.title }}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Калории: {{ dinner.calories.dinner }}</ion-label>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Итого</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-label>Всего калорий: {{ calories.total }}</ion-label>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  </ion-content>

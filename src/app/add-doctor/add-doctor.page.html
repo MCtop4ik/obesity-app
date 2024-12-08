@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Присоединение врача</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>QR-код для присоединения врача</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="center-content">
+      <div class="qr-container">
+        <qrcode [qrdata]="qrData" [scale]="5"></qrcode>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

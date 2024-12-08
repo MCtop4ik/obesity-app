@@ -155,13 +155,39 @@ ion-card {
 }
 
 .adaptive-text {
-  color: var(--ion-text-color, black); /* Чёрный цвет по умолчанию */
+  color: var(--ion-text-color, black);
+  /* Чёрный цвет по умолчанию */
 }
 
 :root {
-  --ion-text-color: azure; /* Для светлой темы */
+  --ion-text-color: azure;
+  /* Для светлой темы */
 }
 
 .ion-dark {
-  --ion-text-color: black; /* Для темной темы */
+  --ion-text-color: black;
+  /* Для темной темы */
+}
+
+.diet-buttons {
+  display: none;
+}
+
+.diet-buttons-big-screens {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .diet-buttons {
+    display: block;
+  }
+
+  .diet-buttons-big-screens {
+    display: none;
+  }
+}
+
+.custom-textarea {
+  height: 55px;
+  border: 1px black;
 }

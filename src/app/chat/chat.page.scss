@@ -1,0 +1,91 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    padding: 10px;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.message {
+    display: flex;
+    margin: 5px 0;
+}
+
+.message.received {
+    justify-content: flex-start;
+}
+
+.message.sent {
+    justify-content: flex-end;
+}
+
+.bubble {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.message.received .bubble {
+    background-color: var(--bubble-received-bg, #e0e0e0);
+    color: var(--bubble-received-text, #000);
+    border-top-left-radius: 0;
+}
+
+.message.sent .bubble {
+    background-color: var(--bubble-sent-bg, #0078d4);
+    color: var(--bubble-sent-text, #fff);
+    border-top-right-radius: 0;
+}
+
+.message-input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid var(--input-border-color);
+    background-color: var(--input-bg, #ccc);
+    border-radius: 10px;
+    color: black;
+    z-index: 10;
+    margin: 20px;
+}
+
+ion-input {
+    flex: 1;
+    margin-right: 10px;
+    background-color: var(--input-bg);
+    color: var(--input-text-color);
+}
+
+:root {
+    --bubble-received-bg: #e0e0e0;
+    --bubble-received-text: #000;
+    --bubble-sent-bg: #0078d4;
+    --bubble-sent-text: #fff;
+    --input-bg: #f9f9f9;
+    --input-border-color: #ccc;
+    --input-text-color: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bubble-received-bg: #444;
+        --bubble-received-text: #fff;
+        --bubble-sent-bg: #1a73e8;
+        --bubble-sent-text: #fff;
+        --input-bg: #333;
+        --input-border-color: #555;
+        --input-text-color: #fff;
+    }
+} 
+

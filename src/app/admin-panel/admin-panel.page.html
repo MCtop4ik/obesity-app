@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Панель врача</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let diet of diets">
+    <ion-card-header>
+      <ion-card-title>Диета</ion-card-title>
+      <ion-card-subtitle>Общая калорийность: {{ diet.diet.calories.total }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- Завтрак -->
+      <div>
+        <h4>Завтрак: {{ diet.diet.calories.breakfast }} ккал</h4>
+        <ng-container *ngFor="let meal of getMeals(diet.diet.breakfast)">
+          <div class="meal">
+            <ion-img [src]="meal.image_src"></ion-img>
+            <div>
+              <h5>{{ meal.title }}</h5>
+              <p>Вес: {{ meal.gramms }} г</p>
+              <p>Белки: {{ meal.proteins }} г</p>
+              <p>Жиры: {{ meal.fats }} г</p>
+              <p>Углеводы: {{ meal.carbohydrates }} г</p>
+              <p>Калорийность: {{ meal.calories }} ккал</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <!-- <ion-item-divider></ion-item-divider> -->
+      <!-- Обед -->
+      <div>
+        <h4>Обед: {{ diet.diet.calories.lunch }} ккал</h4>
+        <ng-container *ngFor="let meal of getMeals(diet.diet.lunch)">
+          <div class="meal">
+            <ion-img [src]="meal.image_src"></ion-img>
+            <div>
+              <h5>{{ meal.title }}</h5>
+              <p>Вес: {{ meal.gramms }} г</p>
+              <p>Белки: {{ meal.proteins }} г</p>
+              <p>Жиры: {{ meal.fats }} г</p>
+              <p>Углеводы: {{ meal.carbohydrates }} г</p>
+              <p>Калорийность: {{ meal.calories }} ккал</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- <ion-item-divider></ion-item-divider> -->
+      <!-- Ужин -->
+      <div>
+        <h4>Ужин: {{ diet.diet.calories.dinner }} ккал</h4>
+        <ng-container *ngFor="let meal of getMeals(diet.diet.dinner)">
+          <div class="meal">
+            <ion-img [src]="meal.image_src"></ion-img>
+            <div>
+              <h5>{{ meal.title }}</h5>
+              <p>Вес: {{ meal.gramms }} г</p>
+              <p>Белки: {{ meal.proteins }} г</p>
+              <p>Жиры: {{ meal.fats }} г</p>
+              <p>Углеводы: {{ meal.carbohydrates }} г</p>
+              <p>Калорийность: {{ meal.calories }} ккал</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ion-card-content>
+
+    <ion-footer>
+      <ion-button color="success" expand="block" (click)="approveDiet(diet)">Approve</ion-button>
+      <ion-button color="danger" expand="block" (click)="disapproveDiet(diet)">Disapprove</ion-button>
+    </ion-footer>
+  </ion-card>
+</ion-content>

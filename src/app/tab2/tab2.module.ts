@@ -6,6 +6,9 @@ import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
+import { DietModalComponent } from '../diet-modal/diet-modal.component';
+import { DietGaleryPageModule } from '../diet-galery/diet-galery.module';
+import { DietModalPageModule } from '../diet-modal/diet-modal.module';
 
 @NgModule({
   imports: [
@@ -15,6 +18,8 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
     ReactiveFormsModule,
+    DietModalPageModule,
+    DietGaleryPageModule
   ],
   declarations: [Tab2Page]
 })

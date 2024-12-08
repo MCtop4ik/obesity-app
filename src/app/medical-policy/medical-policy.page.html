@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Медицинский Полис</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Medical Policy Data Container -->
+  <div class="policy-container">
+    <!-- Policyholder Info -->
+    <div class="policy-info">
+      <ion-item>
+        <ion-label>ФИО застрахованного</ion-label>
+        <ion-text>{{ policyholderName }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Номер полиса</ion-label>
+        <ion-text>{{ policyNumber }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Дата выдачи</ion-label>
+        <ion-text>{{ issueDate | date }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Дата окончания</ion-label>
+        <ion-text>{{ expirationDate | date }}</ion-text>
+      </ion-item>
+    </div>
+
+    <!-- Coverage Details -->
+    <div class="coverage-details">
+      <ion-item>
+        <ion-label>Тип покрытия</ion-label>
+        <ion-text>{{ coverageType }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Покрытие:</ion-label>
+        <ion-text>{{ coverageDetails }}</ion-text>
+      </ion-item>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info">
+      <ion-item>
+        <ion-label>Телефон</ion-label>
+        <ion-text>{{ contactNumber }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Электронная почта</ion-label>
+        <ion-text>{{ email }}</ion-text>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

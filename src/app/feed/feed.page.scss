@@ -1,0 +1,36 @@
+ion-content {
+    display: flex;
+    justify-content: center;
+    /* Center the grid horizontally */
+    align-items: center;
+    /* Optional: Center vertically */
+}
+
+ion-grid {
+    max-width: 500px;
+    /* Limit the feed width */
+    margin: 0 auto;
+    /* Center the grid */
+}
+
+ion-card {
+    margin: 16px auto;
+    /* Add spacing and ensure the card is centered */
+}
+
+ion-card .post-image {
+    width: 100%;
+    /* Ensure it spans the card's width */
+    max-width: 100%;
+    /* Adjust to fit within the card */
+    height: auto;
+    /* Maintain aspect ratio */
+    max-height: 400px;
+    /* Set a maximum height */
+    object-fit: cover;
+    /* Cover the space without distortion */
+    border-radius: 8px;
+    /* Rounded corners */
+    padding: 10px;
+    overflow: hidden;
+}

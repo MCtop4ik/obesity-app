@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Выберите дату</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Закрыть</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-calendar [(ngModel)]="selectedDate" (change)="onDateChange($event)"></ion-calendar>
+</ion-content>

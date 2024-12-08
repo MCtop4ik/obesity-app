@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Редактировать профиль</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="profile-container">
+    <!-- Avatar Upload -->
+    <div class="avatar-upload">
+      <ion-avatar>
+        <img [src]="avatarUrl" alt="Avatar" />
+      </ion-avatar>
+      <input type="file" accept="image/*" (change)="onFileChange($event)" class="file-input" />
+    </div>
+
+    <!-- Profile Form -->
+    <div class="profile-form">
+      <ion-item class="input-item">
+        <ion-label position="floating">Имя</ion-label>
+        <ion-input [(ngModel)]="firstName" placeholder="Введите имя"></ion-input>
+      </ion-item>
+
+      <ion-item class="input-item">
+        <ion-label position="floating">Фамилия</ion-label>
+        <ion-input [(ngModel)]="lastName" placeholder="Введите фамилию"></ion-input>
+      </ion-item>
+
+      <ion-item class="input-item">
+        <ion-label position="floating">Дата рождения</ion-label>
+        <ion-datetime displayFormat="DD.MM.YYYY" [(ngModel)]="birthDate" placeholder="Выберите дату" presentation="date"></ion-datetime>
+      </ion-item>
+
+      <ion-item class="input-item">
+        <ion-label position="floating">Телефон</ion-label>
+        <ion-input [(ngModel)]="phoneNumber" placeholder="Введите телефон"></ion-input>
+      </ion-item>
+
+      <!-- Submit Button -->
+      <ion-button expand="full" color="primary" (click)="saveProfile()" class="submit-button">
+        Сохранить
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

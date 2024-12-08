@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('../news/news.module').then(m => m.NewsPageModule)
       },
       {
+        path: 'feed',
+        loadChildren: () => import('../feed/feed.module').then(m => m.FeedPageModule)
+      },
+      {
         path: 'tab1',
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
       },
@@ -22,6 +26,14 @@ const routes: Routes = [
       {
         path: 'tab3',
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+      },
+      {
+        path: 'chat',
+        loadChildren: () => import('../chat/chat.module').then(m => m.ChatPageModule)
+      },
+      {
+        path: 'admin-panel',
+        loadChildren: () => import('../admin-panel/admin-panel.module').then(m => m.AdminPanelPageModule)
       },
       {
         path: '',

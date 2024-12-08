@@ -1,0 +1,98 @@
+.filters-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+@media (max-width: 600px) {
+    .filters-container {
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 10px;
+    }
+
+    .sort-dropdown {
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+}
+
+.sort-dropdown {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-radius: 16px;
+    border: 1px solid #555;
+}
+
+ion-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ion-select {
+    --padding-start: 8px;
+    --padding-end: 8px;
+}
+
+@media (max-width: 600px) {
+    ion-select {
+        font-size: 0.8rem;
+    }
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 16px;
+}
+
+.diet-card {
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+ion-card-title {
+    font-size: 1.2rem;
+    color: var(--ion-color-primary);
+    text-align: center;
+}
+
+ion-card-content h3 {
+    margin: 8px 0 4px;
+    font-size: 1rem;
+    color: var(--ion-color-secondary);
+}
+
+ion-card-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+@media (max-width: 600px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+
+    .diet-card {
+        height: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

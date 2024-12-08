@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Техподдержка</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="support-container">
+    <!-- Support form wrapped in a beautiful bordered container -->
+    <div class="support-form">
+      <!-- Subject Input -->
+      <ion-item class="input-item">
+        <ion-label position="floating">Тема письма</ion-label>
+        <ion-input [(ngModel)]="subject" placeholder="Введите тему"></ion-input>
+      </ion-item>
+
+      <!-- Question Textarea -->
+      <ion-item class="textarea-item">
+        <ion-label position="floating">Ваш вопрос</ion-label>
+        <ion-textarea [(ngModel)]="question" placeholder="Опишите ваш вопрос" auto-grow="true"></ion-textarea>
+      </ion-item>
+
+      <!-- Submit Button -->
+      <ion-button expand="full" color="primary" (click)="submitSupportRequest()" class="submit-button">
+        Отправить
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

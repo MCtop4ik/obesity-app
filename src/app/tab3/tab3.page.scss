@@ -150,3 +150,120 @@
         /* Уменьшить размер шрифта для мобильных */
     }
 }
+
+.edit-tab {
+    display: none;
+}
+
+.fab-edit {
+    position: absolute;
+    /* Абсолютное позиционирование */
+    top: 50%;
+    /* Центрирование по вертикали */
+    right: 16px;
+    /* Отступ от правого края */
+    transform: translateY(-50%);
+    /* Смещение для точного центрирования */
+}
+
+ion-fab-button {
+    --background: var(--ion-color-primary);
+    --color: white;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+    .kaggle-profile {
+        flex-direction: column;
+        align-items: end;
+    }
+
+    .profile-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .fab-edit {
+        top: auto;
+        bottom: -20px;
+        /* Сместить кнопку вниз на мобильных устройствах */
+        transform: none;
+        right: 50%;
+        /* Центрировать по горизонтали */
+        transform: translateX(50%);
+    }
+}
+
+.kaggle-profile {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 16px;
+}
+
+.avatar img {
+    width: 100%;
+    height: auto;
+}
+
+.profile-info h2 {
+    display: flex;
+    /* Используется для размещения кнопки рядом с текстом */
+    align-items: center;
+    /* Центрирует кнопку по вертикали */
+    font-size: 1.6em;
+    margin: 0;
+}
+
+.profile-info p {
+    display: flex;
+    align-items: center;
+    /* Центрирует кнопку по вертикали с текстом */
+    margin: 0;
+    color: #555;
+    font-size: 1em;
+}
+
+.fab-inline {
+    margin-left: 8px;
+    /* Отступ между текстом и кнопкой */
+}
+
+ion-fab-button {
+    --background: var(--ion-color-primary);
+    --color: white;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    --size: 28px;
+    /* Размер кнопки */
+}
+
+@media (max-width: 600px) {
+    .profile-info h2 {
+        font-size: 1.4em;
+    }
+
+    .profile-info p {
+        font-size: 0.9em;
+    }
+
+    .fab-inline {
+        display: none;
+    }
+
+    .edit-tab {
+        display: block;
+    }
+}
